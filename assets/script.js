@@ -79,10 +79,14 @@ function showQuizQuestion(){
     var currentChoices = quizBank[index].choices;
     console.log(currentChoices);
 
-    for (var i = 0; i < answerLength.length; i++) {
-    var answerButtons = document.createElement("button");
-    answerButtons.textContent = quizBank[index].choices[index]
-    answersEl.appendChild(answerButtons);
+    for (var i = 0; i < 1; i++) {
+        for ( var j = 0; j < currentChoices.length; j++) {
+            console.log(currentChoices[j])
+            var answerButtons = document.createElement("button");
+            answerButtons.textContent = currentChoices[j];
+            answersEl.appendChild(answerButtons);
+        }
+        
     }
 
     //iterate through our choices
