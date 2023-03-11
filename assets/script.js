@@ -1,28 +1,39 @@
 var timerEl = document.getElementById('countdown');
+var answersEl = document.getElementById('answers-holder');
+var questionEl = document.getElementById('prompt-holder');
+
 var timeLeft = 5;
 var index;
 var quizBank = [
 {
-    prompt: "Hello",
-    choices: ["Hello", "hello1", "Hello", "hello"],
-    correctAnswer: "hello1"
+    prompt: "What does CSS stand for?",
+    choices: ["Compact Style Sheets", "Cascading Style Sheets", "Control Standard Styling", "Core Style Simplified"],
+    correctAnswer: "Cascading Style Sheets"
 },
 {
-    prompt: "Bye",
-    choices: ["Hello", "hello1", "Hello", "Bye"],
-    correctAnswer: "Bye"
+    prompt: "The condition in an if/else statement is enclosed within ___.",
+    choices: ["quotes", "curly brackets", "square brackets", "parenthesis"],
+    correctAnswer: "parenthesis"
 },
 {
-    prompt: "Heyyy",
-    choices: ["Hello", "hello1", "hey", "hello"],
-    correctAnswer: "hey"
+    prompt: "Arrays in JavaScript can be used to store",
+    choices: ["numbers and strings", "other arrays", "booleans", "all of the above"],
+    correctAnswer: "all of the above"
 },
 {
-    prompt: "Heyyy",
-    choices: ["Hello", "hello1", "hey", "hello"],
-    correctAnswer: "hey"
+    prompt: "A very useful tool during development and debugging for printing content to the debugger is:",
+    choices: ["JavaScript", "terminal / bash", "for loops", "console.log"],
+    correctAnswer: "console.log"
+},
+{
+    prompt: "JavaScript is used for:",
+    choices: ["controlling multimedia", "animating images", "creating interactive content", "all of the above"],
+    correctAnswer: "all of the above"
 }
 ]
+var questionNumber = 0;
+var questionLength = quizBank.length;
+var answerLength = quizBank[questionNumber].choices;
 
 //timer countdown from 60 seconds
 function countdown() {
@@ -62,10 +73,18 @@ function showQuizQuestion(){
     console.log("Showing a question!")
     // select our prompt-holder and populate it with our current question
 
-    var currentQuestion = quizBank[index].prompt
-    console.log(currentQuestion)
-    var currentChoices = quizBank[index].choices
-    console.log(currentChoices)
+    var currentQuestion = quizBank[index].prompt;
+        questionEl.innerText = quizBank[index].prompt;
+    console.log(currentQuestion);
+    var currentChoices = quizBank[index].choices;
+    console.log(currentChoices);
+
+    for (var i = 0; i < answerLength.length; i++) {
+    var answerButtons = document.createElement("button");
+    answerButtons.textContent = quizBank[index].choices[index]
+    answersEl.appendChild(answerButtons);
+    }
+
     //iterate through our choices
     //create a button
     //add event listener to check answer
@@ -80,11 +99,12 @@ function checkAnswer(event){
     console.log(event.target)
     var correctAnswer = quizBank[index].correctAnswer
     console.log(correctAnswer)
-    //if (it's correct){
-    //     "Yay"
-    // } else {
-    //     timeLeft-= 5
-    // }
+        if (correctAnswer) {
+        answersEl[i].style.color = 'lightgreen';
+    } else {
+        answersEl[i].style.color = 'red';
+        timeLeft-= 5;
+    }
     if(index === quizBank.length -1){
         endQuiz()
         return
