@@ -2,7 +2,7 @@ var timerEl = document.getElementById('countdown');
 var answersEl = document.getElementById('answers-holder');
 var questionEl = document.getElementById('prompt-holder');
 
-var timeLeft = 5;
+var timeLeft = 60;
 var index;
 var quizBank = [
 {
@@ -78,36 +78,29 @@ function showQuizQuestion(){
     console.log(currentQuestion);
     var currentChoices = quizBank[index].choices;
     console.log(currentChoices);
-
-    for (var i = 0; i < 1; i++) {
-        for ( var j = 0; j < currentChoices.length; j++) {
-            console.log(currentChoices[j])
+    answersEl.innerHTML = ""
+        for ( var i = 0; i < currentChoices.length; i++) {
             var answerButtons = document.createElement("button");
-            answerButtons.textContent = currentChoices[j];
+            answerButtons.textContent = currentChoices[i];
             answersEl.appendChild(answerButtons);
+            answerButtons.addEventListener("click", checkAnswer)
         }
-        
-    }
-
-    //iterate through our choices
-    //create a button
-    //add event listener to check answer
-    //append it to the answer-holder
-    //
-
-}
+};
 
 function checkAnswer(event){
-    event.preventDefault()
-    console.log(event)
-    console.log(event.target)
+    //event.preventDefault()
+    console.log("checking answer", event)
+    //console.log(event.target)
     var correctAnswer = quizBank[index].correctAnswer
     console.log(correctAnswer)
-        if (correctAnswer) {
-        answersEl[i].style.color = 'lightgreen';
+    console.log(event.target)
+        if (correctAnswer === event.target.innerText) {
+        answersEl.style.backgroundColor = 'lightgreen';
+        console.log("correct!");
     } else {
-        answersEl[i].style.color = 'red';
+        answersEl.style.backgroundColor = 'red';
         timeLeft-= 5;
+        console.log("incorrect :(")
     }
     if(index === quizBank.length -1){
         endQuiz()
