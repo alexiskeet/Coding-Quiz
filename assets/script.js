@@ -1,6 +1,7 @@
 var timerEl = document.getElementById('countdown');
 var answersEl = document.getElementById('answers-holder');
 var questionEl = document.getElementById('prompt-holder');
+var scoreEl = document.getElementById('highscore-input');
 
 var timeLeft = 60;
 var index;
@@ -117,5 +118,7 @@ function endQuiz(){
     var endEl = document.getElementById('end-quiz-box');
     endEl.classList.remove('hide');
 }
+
+
 
 document.getElementById("start-button").addEventListener("click", startQuiz)
