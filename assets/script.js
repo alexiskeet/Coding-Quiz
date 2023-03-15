@@ -112,11 +112,17 @@ function checkAnswer(event){
 }
 
 function endQuiz(){
+    //saving time on timer when quiz is over
+    let saveTime = timeLeft;
+    console.log(saveTime);
+    //clearing timer
+    clearTimeout(timeLeft);
     console.log("ending quiz")
     var quizEl = document.getElementById('quiz-box');
     quizEl.classList.add('hide');
     var endEl = document.getElementById('end-quiz-box');
     endEl.classList.remove('hide');
+
 }
 
 
