@@ -2,6 +2,9 @@ var timerEl = document.getElementById('countdown');
 var answersEl = document.getElementById('answers-holder');
 var questionEl = document.getElementById('prompt-holder');
 var scoreEl = document.getElementById('highscore-input');
+var printEl = document.getElementById('print-score');
+var timeInterval;
+
 
 var timeLeft = 60;
 var index;
@@ -38,18 +41,13 @@ var answerLength = quizBank[questionNumber].choices;
 
 //timer countdown from 60 seconds
 function countdown() {
-    var timeInterval = setInterval(function () {
-        if (timeLeft > 1) {
-            timerEl.textContent = timeLeft + ' seconds remaining';
-            timeLeft--;
-        } else if (timeLeft === 1) {
-            timerEl.textContent = timeLeft + ' second remaining';
-            timeLeft--;
-        } else {
-            timerEl.textContent = '';
-            clearInterval(timeInterval);
-            // call function that brings up highscore input
-            endQuiz()
+
+    timeInterval = setInterval(function () {
+        timeLeft--;
+        timerEl.textContent = timeLeft + ' seconds remaining';
+
+        if (timeLeft <= 0) {
+            endQuiz();
         }
 
     }, 1000)
@@ -115,16 +113,21 @@ function endQuiz(){
     //saving time on timer when quiz is over
     let saveTime = timeLeft;
     console.log(saveTime);
-    //clearing timer
-    clearTimeout(timeLeft);
+    //clear timer
+    clearInterval(timeInterval)
     console.log("ending quiz")
     var quizEl = document.getElementById('quiz-box');
     quizEl.classList.add('hide');
     var endEl = document.getElementById('end-quiz-box');
     endEl.classList.remove('hide');
-
+    //hiding timer once quiz is over
+    var timerEl = document.getElementById('countdown');
+    timerEl.classList.add('hide');
+    printEl.textContent = saveTime;
 }
 
-
+function saveScore() {
+    
+}
 
 document.getElementById("start-button").addEventListener("click", startQuiz)
