@@ -3,11 +3,16 @@ var answersEl = document.getElementById('answers-holder');
 var questionEl = document.getElementById('prompt-holder');
 var scoreEl = document.getElementById('highscore-input');
 var printEl = document.getElementById('print-score');
+var submitEl = document.getElementById('submit-btn');
+var ListEl = document.getElementById('score-list');
+var storeEl = document.getElementById('score-box');
+var formEl = document.getElementById('form');
+
 var timeInterval;
-
-
+var saveTime;
 var timeLeft = 60;
 var index;
+
 var quizBank = [
 {
     prompt: "What does CSS stand for?",
@@ -124,10 +129,33 @@ function endQuiz(){
     var timerEl = document.getElementById('countdown');
     timerEl.classList.add('hide');
     printEl.textContent = saveTime;
-}
+
+    submitEl.innerHTML = ""
+    //create button
+    var submitBtn = document.createElement("button");
+    submitBtn.textContent = "Submit";
+    // append button to submitEl
+    submitEl.appendChild(submitBtn);
+    //"onclick" move to saveScore() function
+    submitBtn.addEventListener("click", saveScore);
+        if (submitBtn)
+    console.log("moving to saveScore()")
+};
+
+
+
 
 function saveScore() {
-    
+localStorage.setItem(scoreEl);
+var storedScore = localStorage.getItem(scoreEl);
+console.log(storedScore)
+// "onclick" save saveTime and scoreEl
+// "onclick" .add("hide") to endEl
+// "onclick" .remove("hide") to storeEl
+    var endEl = document.getElementById('end-quiz-box');
+    endEl.classList.add('hide');
+    var scoreListEl = document.getElementById('score-box');
+    scoreListEl.classList.remove('hide');
 }
 
 document.getElementById("start-button").addEventListener("click", startQuiz)

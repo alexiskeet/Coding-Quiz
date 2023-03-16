@@ -33,14 +33,16 @@
         <p>Your score is:</p>
         <p id = "print-score"> </p>
         <div>
-          <label for="">Enter Initials:</label>
-          <input type = "text" id = "highscore-input">
-          <button>Submit</button>
+          <label for="score-text" id ="form">Enter Initials:</label>
+          <input type = "text" id = "highscore-input" placeholder = "Enter Initials Here">
+          <div id = 'submit-btn'> </div>
+          <!-- <button id = "submit-btn">Submit</button> -->
         </div>
       </section>
 
       <section id = "score-box" class="hide">
         <h2>Highscores:</h2>
+        <ul id = "score-list"></ul>
       </section>
     </section>
     <script src="./assets/script.js"></script>
