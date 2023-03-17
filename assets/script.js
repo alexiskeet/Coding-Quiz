@@ -146,8 +146,15 @@ function endQuiz(){
 
 
 function saveScore() {
-    localStorage.setItem(scoreEl.value, document.querySelector("#print-score").textContent);
-var storedScore = localStorage.getItem(scoreEl.value);
+
+    var highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+    let currentScore = {
+        score:  document.querySelector("#print-score").textContent,
+        name: scoreEl.value
+    }
+highScores.push(currentScore)
+localStorage.setItem("highScores", JSON.stringify(highScores) )
+storedScore = JSON.parse(localStorage.getItem("highScores"));
 console.log(storedScore)
 // "onclick" save saveTime and scoreEl
 // "onclick" .add("hide") to endEl
@@ -158,10 +165,9 @@ console.log(storedScore)
     scoreListEl.classList.remove('hide');
 
     //print scores on screen
-    // let data = storedScore;
     for (i = 0; i < storedScore.length; ++i) {
         var li = document.createElement('li');
-        li.innerText = storedScore[i];
+        li.innerText = `${storedScore[i].name}: ${storedScore[i].score}`;
         ListEl.appendChild(li);
     };
 }
