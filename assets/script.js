@@ -146,8 +146,8 @@ function endQuiz(){
 
 
 function saveScore() {
-localStorage.setItem(scoreEl);
-var storedScore = localStorage.getItem(scoreEl);
+    localStorage.setItem(scoreEl.value, document.querySelector("#print-score").textContent);
+var storedScore = localStorage.getItem(scoreEl.value);
 console.log(storedScore)
 // "onclick" save saveTime and scoreEl
 // "onclick" .add("hide") to endEl
@@ -156,6 +156,14 @@ console.log(storedScore)
     endEl.classList.add('hide');
     var scoreListEl = document.getElementById('score-box');
     scoreListEl.classList.remove('hide');
+
+    //print scores on screen
+    // let data = storedScore;
+    for (i = 0; i < storedScore.length; ++i) {
+        var li = document.createElement('li');
+        li.innerText = storedScore[i];
+        ListEl.appendChild(li);
+    };
 }
 
 document.getElementById("start-button").addEventListener("click", startQuiz)
