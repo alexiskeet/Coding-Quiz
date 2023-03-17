@@ -7,6 +7,8 @@ var submitEl = document.getElementById('submit-btn');
 var ListEl = document.getElementById('score-list');
 var storeEl = document.getElementById('score-box');
 var formEl = document.getElementById('form');
+var highscoreBtn = document.getElementById('highscore-btn');
+//var openingBoxEl = document.getElementById('opening-box');
 
 var timeInterval;
 var saveTime;
@@ -144,7 +146,6 @@ function endQuiz(){
 
 
 
-
 function saveScore() {
 
     var highScores = JSON.parse(localStorage.getItem("highScores")) || [];
@@ -170,6 +171,15 @@ console.log(storedScore)
         li.innerText = `${storedScore[i].name}: ${storedScore[i].score}`;
         ListEl.appendChild(li);
     };
-}
+};
+
+highscoreBtn.addEventListener("click", function(event) {
+    var openingBoxEl = document.getElementById('opening-box');
+    openingBoxEl.classList.add('hide');
+    var scoreListEl = document.getElementById('score-box');
+    scoreListEl.classList.remove('hide');
+
+});
+
 
 document.getElementById("start-button").addEventListener("click", startQuiz)
